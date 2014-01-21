@@ -1,3 +1,3 @@
 object Test extends App {
-  Macros.hello
+  Macros.hello(this)
 }
