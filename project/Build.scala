@@ -2,6 +2,7 @@ import sbt._
 import Keys._
 
 object BuildSettings {
+  val paradiseVersion = "2.0.0-M3"
   val buildSettings = Defaults.defaultSettings ++ Seq(
     organization := "org.scalamacros",
     version := "1.0.0",
@@ -26,10 +27,11 @@ object MyBuild extends Build {
     "macros",
     file("macros"),
     settings = buildSettings ++ Seq(
-      libraryDependencies <+= (scalaVersion)("org.scala-lang" % "scala-reflect" % _),
+      libraryDependencies += "org.scala-lang" % "scala-reflect" % scalaVersion.value,
+      libraryDependencies += "org.scalamacros" % "quasiquotes" % paradiseVersion cross CrossVersion.full,
       autoCompilerPlugins := true,
-      addCompilerPlugin("org.scalamacros" % "paradise" % "2.0.0-M2" cross CrossVersion.full)
-	  )
+      addCompilerPlugin("org.scalamacros" % "paradise" % paradiseVersion cross CrossVersion.full)
+    )
   )
 
   lazy val core: Project = Project(
