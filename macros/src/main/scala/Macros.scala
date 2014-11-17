@@ -24,6 +24,7 @@ class identity extends StaticAnnotation {
 object identityMacro {
   def impl(c: Context)(annottees: c.Expr[Any]*): c.Expr[Any] = {
     import c.universe._
+    c.info(c.enclosingPosition, "identityMacro", force = true)
     println("identityMacro")
     val inputs = annottees.map(_.tree).toList
     val (annottee, expandees) = inputs match {
