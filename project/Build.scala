@@ -2,11 +2,11 @@ import sbt._
 import Keys._
 
 object BuildSettings {
-  val paradiseVersion = "2.0.0-M3"
+  val paradiseVersion = "2.0.1"
   val buildSettings = Defaults.defaultSettings ++ Seq(
     organization := "org.scalamacros",
     version := "1.0.0",
-    scalaVersion := "2.10.3",
+    scalaVersion := "2.11.4",
     resolvers += Resolver.sonatypeRepo("snapshots"),
     resolvers += Resolver.sonatypeRepo("releases"),
     scalacOptions ++= Seq()
