@@ -6,7 +6,7 @@ object BuildSettings {
   val buildSettings = Defaults.defaultSettings ++ Seq(
     organization := "org.scalamacros",
     version := "1.0.0",
-    scalaVersion := "2.10.3",
+    scalaVersion := "2.10.4",
     resolvers += Resolver.sonatypeRepo("snapshots"),
     resolvers += Resolver.sonatypeRepo("releases"),
     scalacOptions ++= Seq()
@@ -37,6 +37,9 @@ object MyBuild extends Build {
   lazy val core: Project = Project(
     "core",
     file("core"),
-    settings = buildSettings
+    settings = buildSettings ++ Seq(
+      libraryDependencies += "org.scala-lang" % "scala-reflect" % scalaVersion.value,
+      libraryDependencies += "org.scala-lang" % "scala-compiler" % scalaVersion.value
+    )
   ) dependsOn(macros)
 }
